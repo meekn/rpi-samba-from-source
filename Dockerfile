@@ -20,11 +20,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 && apt-get clean \
 && rm -rf /var/lib/apt/lists/*
 
+RUN nproc
+
 RUN mkdir samba \
 && curl -SL https://download.samba.org/pub/samba/samba-4.9.0.tar.gz | tar -zxC samba --strip-components 1 \
 && cd samba \
 && ./configure --enable-debug --systemd-install-services --with-systemd --enable-spotlight \
-&& sudo make \
+&& sudo make -j $(nproc) \
 && sudo make install \
 && cd ../ \
 && rm -rf samba \
