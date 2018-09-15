@@ -104,4 +104,4 @@ EOH
 fi
 
 
-exec ionice -c 3 /usr/local/samba/sbin/smbd -FS --configfile="$CONFIG_FILE" </dev/null
+exec ionice -c 3 /usr/local/samba/sbin/smbd -FS --no-process-group --configfile="$CONFIG_FILE" </dev/null
