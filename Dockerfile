@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir samba \
-&& wget -O - https://download.samba.org/pub/samba/samba-4.9.0.tar.gz | tar -C samba -strip-components 1 -zxf - \
+&& curl -SL https://download.samba.org/pub/samba/samba-4.9.0.tar.gz | tar -zxfC samba -strip-components 1 - \
 && cd samba \
 && ./configure --enable-debug --systemd-install-services --with-systemd --enable-spotlight \
 && sudo make \
