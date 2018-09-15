@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends xattr python-cr
 
 RUN apt-get install -y --no-install-recommends wget
 
-RUN wget https://download.samba.org/pub/samba/samba-4.8.2.tar.gz
+RUN wget https://download.samba.org/pub/samba/samba-4.9.0.tar.gz
 
 RUN tar -zxf samba-4.9.0.tar.gz
 
