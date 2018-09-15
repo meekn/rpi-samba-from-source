@@ -18,11 +18,17 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   python-dev \
   wget \
   xattr \
+&& apt-get clean \
 && rm -rf /var/lib/apt/lists/*
 
-RUN wget -O - https://download.samba.org/pub/samba/samba-4.9.0.tar.gz | tar -zxf -
-
-RUN cd samba-4.9.0/; ./configure --enable-debug --systemd-install-services --with-systemd --enable-spotlight; sudo make; sudo make install
+RUN mkdir samba \
+&& wget -O - https://download.samba.org/pub/samba/samba-4.9.0.tar.gz | tar -C samba -strip-components 1 -zxf - \
+&& cd samba \
+&& ./configure --enable-debug --systemd-install-services --with-systemd --enable-spotlight \
+&& sudo make \
+&& sudo make install \
+&& cd ../ \
+&& rm -rf samba
 
 ADD run.sh /run.sh
 
