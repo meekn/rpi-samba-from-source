@@ -65,7 +65,7 @@ EOH
         echo -n "'$username' "
         useradd "$username" -M
         echo -n "with password '$password' "
-	(echo "$password"; echo "$password") |smbpasswd -s -a "$username"
+	(echo "$password"; echo "$password") |pdbedit -t -a -u "$username"
         echo "DONE"
         ;;
       s)
