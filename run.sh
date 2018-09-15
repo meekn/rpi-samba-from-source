@@ -65,7 +65,7 @@ EOH
         echo -n "'$username' "
         useradd "$username" -M
         echo -n "with password '$password' "
-        (echo "$password"; echo "$password") |/usr/local/samba/bin/smbpasswd -s -a "$username"
+        (echo "$password"; echo "$password") |/usr/local/samba/bin/smbpasswd -c "$CONFIG_FILE" -s -a "$username"
         echo "DONE"
         ;;
       s)
