@@ -65,7 +65,7 @@ EOH
         echo -n "'$username' "
         useradd "$username" -M
         echo -n "with password '$password' "
-	(echo "$password"; echo "$password") |pdbedit -t -a -u "$username"
+        (echo "$password"; echo "$password") |/usr/local/samba/bin/smbpasswd -s -a "$username"
         echo "DONE"
         ;;
       s)
@@ -103,4 +103,5 @@ EOH
 
 fi
 
-exec ionice -c 3 /usr/local/bin/smbd -FS --configfile="$CONFIG_FILE" </dev/null
+
+exec ionice -c 3 /usr/local/samba/sbin/smbd -FS --configfile="$CONFIG_FILE" </dev/null
