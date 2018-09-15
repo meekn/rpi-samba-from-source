@@ -21,3 +21,13 @@ RUN apt-get install -y --no-install-recommends libgpgme11-dev
 RUN apt-get install -y --no-install-recommends libarchive-dev
 
 RUN cd samba-4.9.0/; ./configure --enable-debug --systemd-install-services --with-systemd --enable-spotlight; sudo make; sudo make install
+
+ADD run.sh /run.sh
+
+RUN chmod u+x /run.sh
+
+EXPOSE 445
+
+ENTRYPOINT ["/run.sh"]
+
+CMD ["-h"]
