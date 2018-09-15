@@ -20,8 +20,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 && apt-get clean \
 && rm -rf /var/lib/apt/lists/*
 
-RUN nproc
-
 RUN mkdir samba \
 && curl -SL https://download.samba.org/pub/samba/samba-4.9.0.tar.gz | tar -zxC samba --strip-components 1 \
 && cd samba \
