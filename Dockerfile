@@ -8,6 +8,6 @@ RUN apt-get install -y --no-install-recommends wget
 
 RUN wget https://download.samba.org/pub/samba/samba-4.8.2.tar.gz
 
-RUN tar -zxf samba-4.8.2.tar.gz
+RUN tar -zxf samba-4.9.0.tar.gz
 
-RUN cd samba-4.8.2/; ./configure --enable-debug --systemd-install-services --with-systemd --enable-spotlight; sudo make; sudo make install
+RUN cd samba-4.9.0/; ./configure --enable-debug --systemd-install-services --with-systemd --enable-spotlight; sudo make; sudo make install
