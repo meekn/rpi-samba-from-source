@@ -27,8 +27,7 @@ RUN mkdir samba \
 && sudo make -j $(nproc) \
 && sudo make install \
 && cd ../ \
-&& rm -rf samba \
-&& mkdir /etc/samba
+&& rm -rf samba
 
 ADD run.sh /run.sh
 
