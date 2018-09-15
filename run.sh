@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CONFIG_FILE="/usr/local/samba/etc/samba/smb.conf"
+CONFIG_FILE="/usr/local/samba/etc/smb.conf"
 
 initialized=`getent passwd |grep -c '^smbuser:'`
 set -e
