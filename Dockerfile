@@ -16,4 +16,6 @@ RUN apt-get install -y --no-install-recommends python-dev
 
 RUN apt-get install -y --no-install-recommends libjansson-dev
 
+RUN apt-get install -y --no-install-recommends libgpgme11-dev
+
 RUN cd samba-4.9.0/; ./configure --enable-debug --systemd-install-services --with-systemd --enable-spotlight; sudo make; sudo make install
