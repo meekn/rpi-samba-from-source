@@ -30,4 +30,6 @@ EXPOSE 445
 
 ENTRYPOINT ["/run.sh"]
 
+RUN mkdir /etc/samba
+
 CMD ["-h"]
