@@ -21,6 +21,10 @@ load printers = no
 printing = bsd
 printcap name = /dev/null
 disable spoolss = yes
+vfs objects = catia fruit streams_xattr
+fruit:encoding = native
+fruit:metadata = stream
+fruit:veto_appledouble = no
 EOT
 
   while getopts ":u:s:h" opt; do
@@ -41,6 +45,12 @@ Container will be configured as samba sharing server and it just needs:
                               add share, that is visible as 'name', exposing
                               contents of 'path' directory for read+write (rw)
                               or read-only (ro) access for specified logins
+                              user1, user2, .., userN
+
+ -t name:path:user1[,user2[,userN]]
+                              add timacapsule, that is visible as 'name', exposing
+                              contents of 'path' directory for read+write (rw)
+                              access for specified logins
                               user1, user2, .., userN
 
 Example:
@@ -88,6 +98,23 @@ EOH
         users=$(echo "$users" |tr "," " ")
         echo -n "$users "
         echo "valid users = $users" >>"$CONFIG_FILE"
+        echo "DONE"
+        ;;
+      t)
+        echo -n "Add timecapsule "
+        IFS=: read sharename sharepath users <<<"$OPTARG"
+        echo -n "'$sharename' "
+        echo "[$sharename]" >>"$CONFIG_FILE"
+        chown smbuser "$sharepath"
+        echo -n "path '$sharepath' "
+        echo "path = \"$sharepath\"" >>"$CONFIG_FILE"
+        echo -n "read+write "
+        echo "read only = no" >>"$CONFIG_FILE"
+        echo -n "for users: "
+        users=$(echo "$users" |tr "," " ")
+        echo -n "$users "
+        echo "valid users = $users" >>"$CONFIG_FILE"
+        echo "fruit:time machine = yes" >>"$CONFIG_FILE"
         echo "DONE"
         ;;
       \?)
