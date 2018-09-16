@@ -27,7 +27,7 @@ fruit:metadata = stream
 fruit:veto_appledouble = no
 EOT
 
-  while getopts ":u:s:h" opt; do
+  while getopts ":u:s:t:h" opt; do
     case $opt in
       h)
         cat <<EOH
